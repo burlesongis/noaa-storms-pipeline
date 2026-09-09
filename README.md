@@ -47,7 +47,18 @@ To run for several years at once:
 
 ## What I learned
 
-[Two or three sentences. Be specific. What was harder than expected? What would you do differently? This is the part hiring managers actually read.]
+
+The pipeline logic itself wasn't the hardest part — once written, it ran cleanly on the first real attempt against live NOAA data. The bigger challenge was environment setup: getting Miniconda configured to run GDAL with Parquet/Arrow support inside VS Code, and making sure conda was properly initialized for the actual shell I was using (Git Bash), not just any shell.
+
+Beyond that, this project was my first time doing several things from scratch:
+
+Building an automated data pipeline that discovers, downloads, and reprocesses files linked from a live web page — rather than pointing at a fixed, hardcoded URL.
+Using regex and shell pattern matching inside a bash script to parse a directory listing and identify the correct file for a given year.
+Converting a raw CSV into GeoParquet — a modern, cloud-native spatial format — so the data is ready to use directly in GIS and web-mapping tools like QGIS, DuckDB, or GeoPandas.
+Cleaning up the folder so that it deletes the uncompressed file, leaving only compressed data to save storage and prevent the need for re-downloading in the future
+
+Next time, I'd verify a GDAL build actually includes the driver I need before writing code that depends on it, rather than discovering gaps at the very last step.
+
 
 ## Stack
 
